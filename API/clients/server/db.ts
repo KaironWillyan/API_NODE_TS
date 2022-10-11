@@ -17,7 +17,7 @@ class DataBase{
             callback();
         })
     }
-    
+
     logger(uri){
         this.DB_CONNECTION = mongoose.connection;
         this.DB_CONNECTION.on('connected', ()=> console.log("Mongoose está conectado"));

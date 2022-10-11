@@ -31,5 +31,4 @@ class App{
         this.app.route("/api/clientes").post( (req,res)=> this.controller.insert(req, res) ); 
     }
 }
-
 export default new App();
