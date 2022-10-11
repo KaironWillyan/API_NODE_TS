@@ -7,5 +7,4 @@ const ClienteSchema = new mongoose.Schema({
     observacoes: {type: String, required: true}, 
     createdAt: {type: Date, default: Date.now} 
 })
-
 export default mongoose.model("Clientes", ClienteSchema);

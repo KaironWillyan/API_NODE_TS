@@ -53,4 +53,5 @@ class Controller{
         .catch(err => res.status(400).json({'result': err}));
     }
 }
+
 export default Controller;
