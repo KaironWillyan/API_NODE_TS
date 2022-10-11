@@ -1,19 +1,27 @@
 import * as express from 'express';
-import DataBase from './db';
-import Controller from './controller';
+import database from './db';
+import controller from './controller';
+import bodyParser = require('body-parser');
 
 class App{
     public app: express.Application;
-    private database: DataBase;
-    private controller: Controller;
+    private database: database;
+    private controller: controller;
 
     constructor(){
         this.app = express();
-        this.routes();
-        this.database = new DataBase;
+        this.middleware();
+        this.database = new database;
         this.database.createConnection();
-        this.controller = new Controller();
+        this.controller = new controller();
+        this.routes();
     }
+    //para a função de insert e update funcionarem corretamente
+    //faz a conversão do tudo que entra e do que sai em JSON
+    middleware(){  
+        this.app.use(bodyParser.json()); 
+        this.app.use(bodyParser.urlencoded({ extended: true })); 
+    } 
 
     routes(){
         this.app.route("/api/clientes").get( (req,res)=> this.controller.select(req, res) ); 
